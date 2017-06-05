@@ -52,6 +52,8 @@ will give you a new function that behaves as you'd expect.
 Extends puppet-lint to ensure there are no explicit calls to hiera()
 in the class parameters.
 
+[![Build Status](https://travis-ci.org/deanwilson/puppet-lint-explicit_hiera_class_param_lookup-check.svg?branch=master)](https://travis-ci.org/deanwilson/puppet-lint-explicit_hiera_class_param_lookup-check)
+
 In our code base we would rather have a class lookup values for its
 parameters using Puppets automatic data binding functionality rather than
 scatter a number of direct, unpredictably name spaced, hiera calls
@@ -103,6 +105,8 @@ Extends puppet-lint to ensure all file resources use the resource
 title to indicate the file to manage rather than a symbolic name
 and the `path` attribute.
 
+[![Build Status](https://travis-ci.org/deanwilson/puppet-lint-no_file_path_attribute-check.svg?branch=master)](https://travis-ci.org/deanwilson/puppet-lint-no_file_path_attribute-check)
+
 Instead of this:
 
     class path_attribute {
@@ -153,9 +157,12 @@ the files final permissions from just reading the puppet code.
 
 
 
-## [puppet-lint non ERB template file name check](https://github.com/deanwilson/puppet-lint-non_erb_template_filename-check)
-Extends puppet-lint to ensure all file names used in template functions
-end with the string '.erb'.
+## [puppet-lint template file extension check](https://github.com/deanwilson/puppet-lint-template_file_extension-check)
+Extends puppet-lint to ensure all file names used in template and epp
+functions end with the string '.erb' or '.epp' respectively
+
+[![Build Status](https://travis-ci.org/deanwilson/puppet-lint-template_file_extension-check.svg?branch=master)](https://travis-ci.org/deanwilson/puppet-lint-template_file_extension-check)
+
 
 This plugin is an extension of our local style guide and may not suit
 your own code base. This sample would trigger the `puppet-lint` warning:
@@ -166,8 +173,17 @@ your own code base. This sample would trigger the `puppet-lint` warning:
       }
     }
 
-    # all template file names should end with ".erb"
+    # all template file names should end with .erb
 
+And this would trigger an EPP (Embedded Puppet) specific warning:
+
+    class epp_multi_templated_file {
+      file { '/tmp/templated':
+        content => epp('mymodule/first_file.epp', 'mymodule/second_file.conf'),
+      }
+    }
+
+    # all epp file names should end with .epp
 
 
 
