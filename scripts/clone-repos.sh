@@ -8,8 +8,8 @@ repos=$(cat<<all_repos
   puppet-lint-no_cron_resources-check
   puppet-lint-no_erb_template-check
   puppet-lint-no_file_path_attribute-check
-  puppet-lint-non_erb_template_filename-check
   puppet-lint-no_symbolic_file_modes-check
+  puppet-lint-template_file_extension-check
   puppet-lint-world_writable_files-check
   puppet-lint-yumrepo_gpgcheck_enabled-check
 all_repos
